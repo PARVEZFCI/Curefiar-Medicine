@@ -4,7 +4,7 @@
 
  <!-- Begin Hero Area -->
  <section class="hero-area">
-    <div class="container">
+    <div class="container-fluide">
         <div class="row">
             <div class="col-md-12">
                 <!-- Banner -->
@@ -65,17 +65,21 @@
             <div class="col-6 col-md-3 col-md-3half">
                 <div class="item">
                     <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
-                        <a href="javascript:void(0)" class="img-box block relative">
+                        <a href="{{route('medicine.single',$medicine->slug)}}" class="img-box block relative">
                             <img src="frontend/assets/img/product/p7.jpg">
                         </a>
                         <div class="product-desc-block">
                             <a href="javascript:void(0)">{{$medicine->medicine_name}}</a>
                             <p class="price-box">
-                                @if($medicine->discount_price)
-                                <span class="price-new">৳ {{$medicine->discount_price}}</span>
-                                <span class="price-old">৳ {{$medicine->price}}</span>
+                                @if($medicine->medicinePrices[0]->discount_price)
+                                <span class="price-new">৳ {{$medicine->medicinePrices[0]->discount_price}}</span>
+                                <span class="price-old">৳ {{$medicine->medicinePrices[0]->price}}</span>
                                 @else 
-                                <span class="price-new">৳ {{$medicine->price}}</span>
+                                <span class="price-new">৳
+  
+                                     {{$medicine->medicinePrices[0]->price}}
+                                                         
+                                </span>
                                 @endif
                               </p>
                             <div class="sku-quantity-section">
@@ -110,10 +114,10 @@
                 <div class="item">
                     <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
                         <a href="{{route('product.single',$product->slug)}}" class="img-box block relative">
-                            <img src="frontend/assets/img/product/p3.jpg">
+                            <img src="{{ $product->thumbnail_image ? 'storage/uploads/product/' . $product->thumbnail_image : '/image.svg'}}">
                         </a>
                         <div class="product-desc-block">
-                            <a href="javascript:void(0)">{{$product->name}}</a>
+                            <a href="{{route('product.single',$product->slug)}}">{{$product->name}}</a>
                             <p class="price-box">
                                 @if($product->discount_price)
                                   <span class="price-new">৳ {{$product->discount_price}}</span>

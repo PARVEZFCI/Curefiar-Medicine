@@ -1,21 +1,21 @@
 <div class="fixed-social-area">
-    <ul class="fixed-social-list">
-        <li>
-            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
-        </li>
-        <li>
-            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
-        </li>
-        <li>
-            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-        </li>
-        <li>
-            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-        </li>
-    </ul>
+    <!--<ul class="fixed-social-list">-->
+    <!--    <li>-->
+    <!--        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>-->
+    <!--    </li>-->
+    <!--    <li>-->
+    <!--        <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>-->
+    <!--    </li>-->
+    <!--    <li>-->
+    <!--        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>-->
+    <!--    </li>-->
+    <!--    <li>-->
+    <!--        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>-->
+    <!--    </li>-->
+    <!--    <li>-->
+    <!--        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>-->
+    <!--    </li>-->
+    <!--</ul>-->
 </div>
 
 
@@ -28,31 +28,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 white-clr d-flex align-items-center  hidden-xs">
-                        <span class="follow-title">Follow Us</span>
-                        <ul class="list-item follow-us">
-                            <li>
-                                <a href="/"><i class="fab fa-facebook-f icon"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in icon"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="fab fa-instagram icon"></i></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><i class="fab fa-google-plus-g icon"></i></a>
-                            </li>
-                        </ul>
+                      
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 white-clr header-contact">
                         <ul class="list-item">
+                             <li class="mr-lg-4">
+                                <span class="icon fas fa-map-marker-alt font-14 font-xs"></span>
+                                <a href="javascript:void(0)" class="white-clr font-14">Track Order</a>
+                            </li>
                             <li class="mr-lg-4">
                                 <span class="icon fas fa-phone-alt font-14 font-xs"></span>
-                                <a href="javascript:void(0)" class="white-clr font-14">99678565443</a>
+                                <a href="javascript:void(0)" class="white-clr font-14">Doctor Login</a>
                             </li>
                             <li>
-                                <span class="icon far fa-envelope font-14 font-xs"></span>
-                                <a href="javascript:void(0)" class="white-clr font-14">admin@gmail.com</a>
+                                <span class="icon far fa-user font-14 font-xs"></span>
+                                <a href="javascript:void(0)" class="white-clr font-14">Login/Register</a>
                             </li>
                         </ul>
                     </div>
@@ -60,6 +50,12 @@
             </div>
         </div>
         <!-- End Header Top -->
+
+        @php 
+                
+             $categories =  App\Models\ProductCategory::limit(7)->get();
+
+       @endphp 
         
         <!-- Header Center -->
         <div class="header-middle">
@@ -104,18 +100,12 @@
                             </div>
                             <ul class="middle-header-menu">
                                 <li class="middle-header-menu-item">
-                                    <a href="login.html">
-                                        <i class="flaticon-user-3"></i>
-                                        <span class="login-text">Login/</span>
-                                    </a>
-                                    <a href="register.html">
-                                        <span class="login-text">Register</span>
-                                    </a>
+                                   
                                 </li>
                                 <li class="middle-header-menu-item">
                                     <a href="javascript:void(0)" class="cart-bag">
-                                        <i class="flaticon-shopping-bag"></i>
-                                        <span class="mini-item-counter">0</span>
+                                     <i class="flaticon-shopping-bag"></i>
+                                      <span class="mini-item-counter">{{ Cart::count(); }}</span>
                                     </a>
                                 </li>
                                 <!-- <li class="middle-header-menu-item">
@@ -134,44 +124,39 @@
 
         <!-- Header Bottom -->
         <div class="header-bottom">
-            <div class="container">
-                <ul class="header-bottom-menu">
-                    <li class="header-menu-item">
-                        <a href="/">
-                            <i class="fa fa-home"></i>Home
-                        </a>
-                    </li>
-                    <li class="header-menu-item">
-                        <a href="javascript:void(0)">
-                            Madicine
-                        </a>
-                    </li>
-                  
-                    <li class="header-menu-item">
-                        <a href="javascript:void(0)">
-                            Product
-                        </a>
-                    </li><li class="header-menu-item">
-                        <a href="javascript:void(0)">
-                             VIDEOS
-                        </a>
-                    </li>
-                    <li class="header-menu-item">
-                        <a href="javascript:void(0)">
-                             BLOG
-                        </a>
-                    </li>
-                    <li class="header-menu-item">
-                        <a href="javascript:void(0)">
-                             OFFERS!
-                        </a>
-                    </li>
-                    <li class="header-menu-item">
-                        <a href="javascript:void(0)">
-                             SERVICES
-                        </a>
-                    </li>
-                </ul>
+            <div class="container-fluide">
+             
+               <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <ul class="header-bottom-menu">
+                     
+                        <li class="header-menu-item">
+                            <a href="/">
+                                <i class="fa fa-home"></i>Home
+                            </a>
+                        </li>
+                    
+                        <li class="header-menu-item">
+                            <a href="{{url('/en/md/all')}}">
+                                Madicine
+                            </a>
+                        </li>
+                        @if($categories)
+                        @foreach($categories as $category)
+                            <li class="header-menu-item">
+                                <a href="{{route('category.product',$category->slug)}}">
+                                    {{$category->name}}
+                                </a>
+                            </li>
+                        @endforeach
+                        @endif
+                     
+                    </ul>
+                </div>
+                     
+                </div>      
+              
             </div>
         </div>
         <!-- End Header Bottom -->
@@ -189,42 +174,29 @@
                             <i class="fas fa-times close-icon"></i>
                         </button>
                     </div>
+
                     <ul class="cate-menu">
                         <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
+                            <a href="/" class="has-children">
+                                Home
                             </a>
                         </li>
+                       
                         <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
+                            <a href="{{url('/en/md/all')}}" class="has-children">
+                                Madicine
                             </a>
                         </li>
+                        
+                        @foreach($categories as $category)
                         <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
+                            <a href="{{route('category.product',$category->slug)}}" class="has-children">
+                                {{$category->name}}
                             </a>
                         </li>
-                        <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
-                            </a>
-                        </li>
-                        <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
-                            </a>
-                        </li>
-                        <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
-                            </a>
-                        </li>
-                        <li class="cate-menu-item">
-                            <a href="javascript:void(0)" class="has-children">
-                                Baby Care
-                            </a>
-                        </li>
+                        @endforeach
+                        
+                      
                     </ul>
                     <div class="f-overlay"></div>
                 </div>

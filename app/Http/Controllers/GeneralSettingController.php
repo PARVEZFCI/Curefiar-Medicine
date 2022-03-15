@@ -42,10 +42,10 @@ class GeneralSettingController extends Controller
 
         if($request->hasFile('home_banner')){
             
-            if($mediasetting->home_banner){
+            // if($mediasetting->home_banner){
 
-                unlink('storage/uploads/media/'.$mediasetting->home_banner);
-            }
+            //     unlink('storage/uploads/media/'.$mediasetting->home_banner);
+            // }
 
             $extension = $request->home_banner->getClientOriginalExtension();
             $imageName = "media_banner".'_'.rand().'.'.$extension;
@@ -55,10 +55,10 @@ class GeneralSettingController extends Controller
 
         if($request->hasFile('logo')){
 
-            if($mediasetting->logo){
+            // if($mediasetting->logo){
 
-                unlink('storage/uploads/media/'.$mediasetting->logo);
-            }
+            //     unlink('storage/uploads/media/'.$mediasetting->logo);
+            // }
             $extension = $request->logo->getClientOriginalExtension();
             $imageName = "logo".'_'.rand().'.'.$extension;
             $request->logo->storeAs('public/uploads/media/',$imageName);
@@ -66,10 +66,10 @@ class GeneralSettingController extends Controller
         }
         if($request->hasFile('favicon')){
 
-            if($mediasetting->favicon){
+            // if($mediasetting->favicon){
 
-                unlink('storage/uploads/media/'.$mediasetting->favicon);
-            }
+            //     unlink('storage/uploads/media/'.$mediasetting->favicon);
+            // }
             $extension = $request->favicon->getClientOriginalExtension();
             $imageName = "favicon".'_'.rand().'.'.$extension;
             $request->favicon->storeAs('public/uploads/media/',$imageName);

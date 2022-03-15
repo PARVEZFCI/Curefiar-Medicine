@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        @foreach($medicines as $medicine)
+        @foreach($medicines as $key=>$medicine)
         <div class="col-6 col-md-3 col-md-3half">
             <div class="item">
                 <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
@@ -23,11 +23,15 @@
                     <div class="product-desc-block">
                         <a href="javascript:void(0)">{{$medicine->medicine_name}}</a>
                         <p class="price-box">
-                            @if($medicine->discount_price)
-                              <span class="price-new">৳ {{$medicine->discount_price}}</span>
-                              <span class="price-old">৳ {{$medicine->price}}</span>
+                            @if($medicine->medicinePrices[0]->discount_price)
+                              <span class="price-new">৳ {{$medicine->medicinePrices[0]->discount_price}}</span>
+                              <span class="price-old">৳ {{$medicine->medicinePrices[0]->price}}</span>
                               @else 
-                              <span class="price-new">৳ {{$medicine->price}}</span>
+                              <span class="price-new">৳
+
+                                   {{$medicine->medicinePrices[0]->price}}
+                                                       
+                              </span>
                               @endif
                           </p>
                         <div class="sku-quantity-section">

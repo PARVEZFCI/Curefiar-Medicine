@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
        
-        \View::share('category', ProductCategory::get());
+       // \View::share('categories', ProductCategory::limit(7)->get());
 
     }
 }

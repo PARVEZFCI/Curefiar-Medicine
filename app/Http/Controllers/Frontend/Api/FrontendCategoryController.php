@@ -25,13 +25,35 @@ class FrontendCategoryController extends Controller
     public function allmedicine(){
          
       $data['medicines'] = Medicine::active()->relation()->paginate(50);
+        // dd( $data['medicines']);
       return view('frontend.allmedicine',$data);
     }
 
     public function singleproduct($slug){
+  
+      try{
 
-      $data['product'] = Product::where('slug',$slug)->first();
 
+      $data['productsingle'] = $product = Product::where('slug',$slug)->first();
+      $data['medicinesingle'] =  Medicine::where('slug',$slug)->first();
+      if($product){
+      $data['products'] = Product::where('category_id',$product->category_id)->inRandomOrder()->limit(6)->get();
       return view('frontend.singleproduct',$data);
+
+      }else{
+
+        $data['medicines'] = Medicine::inRandomOrder()->limit(6)->get();
+
+
+        return view('frontend.singlemedicine',$data);
+
+
+      }
+
+
+      }catch(\Exception $e){
+        abort(404);
+      }
+
     }
 }
