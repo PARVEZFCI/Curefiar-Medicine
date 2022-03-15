@@ -128,9 +128,9 @@ class ProductController extends Controller
        // $data['slug'] = (Str::slug($request->name).Str::random(5));
         if($request->hasFile('thumbnail')){
 
-            if($product->thumbnail_image){
-                unlink('storage/uploads/product/'.$product->thumbnail_image);
-            }
+            // if($product->thumbnail_image){
+            //     unlink('storage/uploads/product/'.$product->thumbnail_image);
+            // }
 
             $extension = $request->thumbnail->getClientOriginalExtension();
             $imageName = "product".'_'.time().'.'.$extension;
@@ -139,10 +139,8 @@ class ProductController extends Controller
         }
 
         $product->update($data);
-
         if($request->hasFile('photos')){
             foreach ($request->photos as $key => $photo) {
-                
                 $extension = $photo->getClientOriginalExtension();
                 $name      = "photo".'_'.time().rand(). '.' .$extension;
                 $photo->storeAs('public/uploads/product/mainproduct', $name);
