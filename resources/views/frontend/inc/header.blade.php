@@ -18,8 +18,6 @@
     <!--</ul>-->
 </div>
 
-
-
 <div class="page-wrapper">
     <!-- Header -->
     <header class="main-header">
@@ -32,17 +30,17 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12 white-clr header-contact">
                         <ul class="list-item">
-                             <li class="mr-lg-4">
+                            <li class="mr-lg-4">
                                 <span class="icon fas fa-map-marker-alt font-14 font-xs"></span>
-                                <a href="javascript:void(0)" class="white-clr font-14">Track Order</a>
+                                <a href="/track-order" class="white-clr font-14">Track Order</a>
                             </li>
                             <li class="mr-lg-4">
-                                <span class="icon fas fa-phone-alt font-14 font-xs"></span>
-                                <a href="javascript:void(0)" class="white-clr font-14">Doctor Login</a>
+                                <span class="icon fas fa-upload font-14 font-xs"></span>
+                                <a href="/upload-prescription" class="white-clr font-14">Upload Prescription</a>
                             </li>
                             <li>
                                 <span class="icon far fa-user font-14 font-xs"></span>
-                                <a href="javascript:void(0)" class="white-clr font-14">Login/Register</a>
+                                <a href="/customer-login" class="white-clr font-14">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -50,12 +48,9 @@
             </div>
         </div>
         <!-- End Header Top -->
-
         @php 
-                
-             $categories =  App\Models\ProductCategory::limit(7)->get();
-
-       @endphp 
+            $categories =  App\Models\ProductCategory::limit(5)->get();
+        @endphp 
         
         <!-- Header Center -->
         <div class="header-middle">
@@ -108,12 +103,6 @@
                                       <span class="mini-item-counter">{{ Cart::count(); }}</span>
                                     </a>
                                 </li>
-                                <!-- <li class="middle-header-menu-item">
-                                    <a href="javascript:void(0)">
-                                        <i class="fa fa-user"></i>
-                                        <span class="login-text">Profile</span>
-                                    </a>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -124,39 +113,32 @@
 
         <!-- Header Bottom -->
         <div class="header-bottom">
-            <div class="container-fluide">
-             
-               <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-10">
-                    <ul class="header-bottom-menu">
-                     
+            <div class="container">   
+              <ul class="header-bottom-menu"> 
+                    <li class="header-menu-item">
+                        <a href="/">
+                            <i class="fa fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li class="header-menu-item">
+                        <a href="{{url('/en/md/all')}}">
+                            Madicine
+                        </a>
+                    </li>
+                    @if($categories)
+                    @foreach($categories as $category)
                         <li class="header-menu-item">
-                            <a href="/">
-                                <i class="fa fa-home"></i>Home
+                            <a href="{{route('category.product',$category->slug)}}">
+                                {{$category->name}}
                             </a>
                         </li>
-                    
-                        <li class="header-menu-item">
-                            <a href="{{url('/en/md/all')}}">
-                                Madicine
-                            </a>
-                        </li>
-                        @if($categories)
-                        @foreach($categories as $category)
-                            <li class="header-menu-item">
-                                <a href="{{route('category.product',$category->slug)}}">
-                                    {{$category->name}}
-                                </a>
-                            </li>
-                        @endforeach
-                        @endif
-                     
-                    </ul>
-                </div>
-                     
-                </div>      
-              
+                    @endforeach
+                    @endif
+
+                    <li class="header-menu-item">
+                        <a href="/contact">Contact Us</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- End Header Bottom -->
@@ -195,7 +177,10 @@
                             </a>
                         </li>
                         @endforeach
-                        
+
+                        <li class="cate-menu-item">
+                            <a href="/contact">Contact</a>
+                        </li>
                       
                     </ul>
                     <div class="f-overlay"></div>
