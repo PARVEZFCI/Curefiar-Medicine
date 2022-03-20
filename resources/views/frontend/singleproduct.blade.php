@@ -45,7 +45,7 @@
 														<i class="fa fa-plus next-icon"></i>
 													</button>
 												</div> --}}
-										    	<button onclick="forAddToCart({{$productsingle->id}})" class="custom-btn bg-color-alpa font-14
+										    	<button onclick="forAddToCart({{$productsingle->id}},0)" class="custom-btn bg-color-alpa font-14
 										    	font-w-700 cart-bag">Add To Cart</button>
 											</div>
 										</div>

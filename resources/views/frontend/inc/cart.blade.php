@@ -14,8 +14,6 @@
                     <div class="item-image">
                         <a href="javascript:void(0)" class="font-14 clr-4f4f4f">
                            {{$row->name}}
-                           {{$key}}
-                           
                         </a>
                     </div>
                     <div class="item-price">
@@ -48,15 +46,15 @@
             </div>
             <div class="item-price">
                 <p class="font-14 mb-1">{{Cart::total()}}/-</p>
-                
             </div>
-    
+
             <div class="">
             </div>
+            
             <div class="action">
             </div>
-        </div>
 
+        </div>
     </div>
    
     </div>

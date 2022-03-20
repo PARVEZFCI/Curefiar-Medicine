@@ -76,9 +76,7 @@
                                 <span class="price-old">৳ {{$medicine->medicinePrices[0]->price}}</span>
                                 @else 
                                 <span class="price-new">৳
-  
-                                     {{$medicine->medicinePrices[0]->price}}
-                                                         
+                                     {{$medicine->medicinePrices[0]->price}}        
                                 </span>
                                 @endif
                               </p>
