@@ -4,19 +4,11 @@
 	}
 }
 
-/*@media only screen and  (min-width: 1200px) {
-	.container {
-	    max-width: 1300px!important;
+@media only screen and  (min-width: 991px) {
+	.table-responsive{
+		display: inline-table;
 	}
 }
-
-@media only screen and (max-width: 1199.98px) { 
-	.container {
-		padding-left: 0px;
-		padding-right: 0px;
-	}
-}*/
-
 
 @media only screen and (max-width: 991.98px) { 
 	.header-top ul.list-item {

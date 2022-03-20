@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Api\HomeApiController;    
 use App\Http\Controllers\Frontend\Api\FrontendCategoryController;   
 use App\Http\Controllers\Frontend\Api\CartController;   
-
+use App\Http\Controllers\Frontend\AuthController;
 
 /*  
 |--------------------------------------------------------------------------
@@ -33,9 +33,30 @@ Route::get('/cart/product/delete',[CartController::class,'removeCart'])->name('p
 
 
 
-require __DIR__.'/api.php';
+// require __DIR__.'/api.php';
 require __DIR__.'/admin.php';
 
-Route::get('/{any}', function(){
-    return view('frontend.app');
-})->where('any', '.*');
+// Route::get('/{any}', function(){
+//     return view('frontend.app');
+// })->where('any', '.*');
+
+
+//Auth Route
+Route::get('/customer-login',[AuthController::class,'login']); 
+Route::get('/customer-registration',[AuthController::class,'registration']);
+Route::get('/customer-profile',[AuthController::class,'profile']);
+Route::get('/upload-prescription', function () {
+    return view('frontend.prescription');
+});
+Route::get('/track-order', function () {
+    return view('frontend.track-order');
+});
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+Route::get('/checkout', function () {
+    return view('frontend.checkout');
+});
+Route::get('/customer-order', function () {
+    return view('frontend.auth.order');
+});

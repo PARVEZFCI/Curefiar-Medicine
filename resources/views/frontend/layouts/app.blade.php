@@ -29,19 +29,9 @@
          
         @include('/frontend.inc.header')
 		@include('/frontend.inc.cart')
-
-
-	      @yield('main_content')
-
-            <!-- Begin Shopping Cart -->
-			
-	        <!-- End Shopping Cart -->
-
-	       
+	    @yield('main_content')
+		@include('/frontend.inc.footer')
 		
-			@include('/frontend.inc.footer')
-
-		</div>
         @yield('script')
 
 	    <!-- Proper Js --> 
