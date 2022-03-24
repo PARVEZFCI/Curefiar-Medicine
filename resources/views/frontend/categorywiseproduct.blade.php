@@ -17,11 +17,11 @@
         <div class="col-6 col-md-3 col-md-3half">
             <div class="item">
                 <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
-                    <a href="javascript:void(0)" class="img-box block relative">
+                    <a href="{{route('product.single',$product->slug)}}" class="img-box block relative">
                         <img src="/frontend/assets/img/product/{{$product->image ? $product->image:'p3.jpg'}} ">
                     </a>
                     <div class="product-desc-block">
-                        <a href="javascript:void(0)">{{$product->name}}</a>
+                        <a href="{{route('product.single',$product->slug)}}">{{$product->name}}</a>
                         <p class="price-box">
                             @if($product->discount_price)
                               <span class="price-new">৳ {{$product->discount_price}}</span>
@@ -32,7 +32,7 @@
                           </p>
                         <div class="sku-quantity-section">
                             <input type="number" name="" min="1" value="1">
-                            <button class="custom-btn bg-color-alpa font-14
+                            <button onclick="forAddToCart({{$product->id}},0)" class="cart-bag custom-btn bg-color-alpa font-14
                             font-w-700">
                             <span class="flaticon-shopping-bag"></span>
                                 Add To Cart</button>

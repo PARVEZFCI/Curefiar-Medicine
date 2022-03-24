@@ -35,17 +35,17 @@ class FrontendCategoryController extends Controller
 
 
       $data['productsingle'] = $product = Product::where('slug',$slug)->first();
-      $data['medicinesingle'] =  Medicine::where('slug',$slug)->first();
+      $data['medicinesingle'] =  Medicine::where('slug',$slug)->relation()->first();
       if($product){
       $data['products'] = Product::where('category_id',$product->category_id)->inRandomOrder()->limit(6)->get();
       return view('frontend.singleproduct',$data);
 
       }else{
 
-        $data['medicines'] = Medicine::inRandomOrder()->limit(6)->get();
+        $data['medicines'] = Medicine::inRandomOrder()->active()->relation()->limit(6)->get();
 
 
-        return view('frontend.singlemedicine',$data);
+        return view('frontend.singlemedicine',$data); 
 
 
       }
@@ -53,6 +53,20 @@ class FrontendCategoryController extends Controller
 
       }catch(\Exception $e){
         abort(404);
+      }
+
+    }
+
+    public function srcmedicine(Request $request){
+      try{
+
+      $data['medicines'] =  Medicine::Search($request->search)->relation()->get();
+       return view('frontend.searchmedicine',$data);
+      }catch(\Exception $e){
+        
+        abort(404);
+
+
       }
 
     }

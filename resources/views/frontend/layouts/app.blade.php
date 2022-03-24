@@ -23,6 +23,8 @@
 
 	    <!-- Responsive Css -->
 	    <link rel="stylesheet" type="text/css" href="/frontend/assets/css/responsive.css">
+
+		<link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 	    
 	</head>
 	<body id="home">
@@ -48,5 +50,8 @@
 	    <script src="/frontend/assets/js/owl.carousel.min.js"></script>
 	    <!-- Main JS -->
 	    <script src="/frontend/assets/js/main.js"></script>
+
+		<script src="{{ asset('js/iziToast.js') }}"></script>
+		@include('vendor.lara-izitoast.toast')
 	</body>
 </html>

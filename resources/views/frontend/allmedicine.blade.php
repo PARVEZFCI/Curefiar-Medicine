@@ -17,11 +17,11 @@
         <div class="col-6 col-md-3 col-md-3half">
             <div class="item">
                 <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
-                    <a href="javascript:void(0)" class="img-box block relative">
-                        <img src="/frontend/assets/img/product/{{$medicine->image ? $medicine->image:'p3.jpg'}} ">
+                    <a href="{{route('medicine.single',$medicine->slug)}}" class="img-box block relative">
+                        <img src="{{ $medicine->image ? '/storage/uploads/medicines/' . $medicine->image : '/frontend/assets/img/product/p3.jpg'}}" alt="item">
                     </a>
                     <div class="product-desc-block">
-                        <a href="javascript:void(0)">{{$medicine->medicine_name}}</a>
+                        <a href="{{route('medicine.single',$medicine->slug)}}">{{$medicine->medicine_name}}</a>
                         <p class="price-box">
                             @if($medicine->medicinePrices[0]->discount_price)
                               <span class="price-new">৳ {{$medicine->medicinePrices[0]->discount_price}}</span>
@@ -36,8 +36,8 @@
                           </p>
                         <div class="sku-quantity-section">
                             <input type="number" name="" min="1" value="1">
-                            <button class="custom-btn bg-color-alpa font-14
-                            font-w-700">
+                            <button onclick="forAddToCart({{$medicine->id}},1)" class="custom-btn bg-color-alpa font-14
+                            font-w-700 cart-bag">
                             <span class="flaticon-shopping-bag"></span>
                                 Add To Cart</button>
                         </div>

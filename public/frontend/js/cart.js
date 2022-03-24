@@ -1,9 +1,12 @@
-function forAddToCart(id){
-
+function forAddToCart(id,type){
+   console.log(type);
     $.ajax({
 		
          url:'/cart/product',
-         data:{id:id},
+         data:{
+            id:id,
+            type:type
+         },
          
          type:"GET",
     
@@ -13,8 +16,6 @@ function forAddToCart(id){
     })
              
  }
-
-
  function deleteCart(id){
 
     $.ajax({
@@ -23,7 +24,6 @@ function forAddToCart(id){
         data:{id:id},
         
         type:"GET",
-   
         success:function(data){
            $('#cart-data').html(data);
         }

@@ -9,10 +9,14 @@
         			<div class="seller-left-sidebar">
         				<div class="sidebar-header">
         					<div class="seller-img text-center mb-4">
+        						@if(Auth::guard('customer')->user()->image)
+								<img src="{{Auth::guard('customer')->user()->image ? '/storage/uploads/customerprofile/'.Auth::guard('customer')->user()->image : '/image.svg'}}" alt="customer">
+								@else								
         						<img src="https://onlinemedicare.com.bd/frontend_assets/assets/img/blank.png" alt="customer">
+								@endif
         					</div>
         					<div class="seller-name">
-        						Jon Doe
+        						{{Auth::guard('customer')->user()->name}}
         					</div>
         				</div>
         				<!-- sidebar with menu -->
@@ -49,86 +53,44 @@
 				            <thead class="thead-default">
 				              <tr>
 				                <th class="text-center">Order Invoice</th>
-				                <th class="text-center">Date</th>
-				                <th class="text-center">Total price</th>
+				                
+				                {{-- <th class="text-center">Total price</th> --}}
 				                <th class="text-center">Phone</th>
 				                <th class="text-center">Status</th>
 				                <th class="text-center">Action</th>
 				              </tr>
 				            </thead>
 				            <tbody>
+								
+								@foreach($orderdata as $row)
 				            	<tr>
-				                  	<th class="text-center">#Invoice-31</th>
-				                  	<td class="text-center">2022-03-20</td>
-				                  	<td class="text-center">৳680.00</td>
-				                  	<td class="text-center">018xxxxxxxxx</td>
+				                  	<th class="text-center">#{{$row->order_code}}</th>
+				                  
+				                  	{{-- <td class="text-center">৳{{}}</td> --}}
+				                  	<td class="text-center">
+										  @php 
+                                            $address =  json_decode($row->additional_address);
+										  @endphp 
+										  {{Auth::guard('customer')->user()->phone}}
+									  </td>
 				                 	<td class="text-center">
-				                 		<span class="badge badge-warning">Panding</span>
+				                 		<span class="badge badge-warning">
+											 @if($row->status == 0)
+											 Pandding
+											 @elseif($row->status == 1)
+											 In Progress
+											 @elseif($row->status == 2)
+											 Delivered
+											 @endif
+										 </span>
 				                  	</td>
 				                  	<td class="text-center">
 				                  		<a href=""><i class="fa fa-list"></i></a>
 				                  	</td>
 				                </tr>
-				                <tr>
-				                  	<th class="text-center">#Invoice-31</th>
-				                  	<td class="text-center">2022-03-20</td>
-				                  	<td class="text-center">৳680.00</td>
-				                  	<td class="text-center">018xxxxxxxxx</td>
-				                 	<td class="text-center">
-				                 		<span class="badge badge-warning">Panding</span>
-				                  	</td>
-				                  	<td class="text-center">
-				                  		<a href=""><i class="fa fa-list"></i></a>
-				                  	</td>
-				                </tr>
-				                <tr>
-				                  	<th class="text-center">#Invoice-31</th>
-				                  	<td class="text-center">2022-03-20</td>
-				                  	<td class="text-center">৳680.00</td>
-				                  	<td class="text-center">018xxxxxxxxx</td>
-				                 	<td class="text-center">
-				                 		<span class="badge badge-warning">Panding</span>
-				                  	</td>
-				                  	<td class="text-center">
-				                  		<a href=""><i class="fa fa-list"></i></a>
-				                  	</td>
-				                </tr>
-				                <tr>
-				                  	<th class="text-center">#Invoice-31</th>
-				                  	<td class="text-center">2022-03-20</td>
-				                  	<td class="text-center">৳680.00</td>
-				                  	<td class="text-center">018xxxxxxxxx</td>
-				                 	<td class="text-center">
-				                 		<span class="badge badge-warning">Panding</span>
-				                  	</td>
-				                  	<td class="text-center">
-				                  		<a href=""><i class="fa fa-list"></i></a>
-				                  	</td>
-				                </tr>
-				                <tr>
-				                  	<th class="text-center">#Invoice-31</th>
-				                  	<td class="text-center">2022-03-20</td>
-				                  	<td class="text-center">৳680.00</td>
-				                  	<td class="text-center">018xxxxxxxxx</td>
-				                 	<td class="text-center">
-				                 		<span class="badge badge-warning">Panding</span>
-				                  	</td>
-				                  	<td class="text-center">
-				                  		<a href=""><i class="fa fa-list"></i></a>
-				                  	</td>
-				                </tr>
-				                <tr>
-				                  	<th class="text-center">#Invoice-31</th>
-				                  	<td class="text-center">2022-03-20</td>
-				                  	<td class="text-center">৳680.00</td>
-				                  	<td class="text-center">018xxxxxxxxx</td>
-				                 	<td class="text-center">
-				                 		<span class="badge badge-warning">Panding</span>
-				                  	</td>
-				                  	<td class="text-center">
-				                  		<a href=""><i class="fa fa-list"></i></a>
-				                  	</td>
-				                </tr>
+				               @endforeach
+				              
+				               
 				            </tbody>
 	          			</table>
                   	</div>
