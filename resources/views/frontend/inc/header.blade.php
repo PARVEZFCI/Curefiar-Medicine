@@ -38,10 +38,19 @@
                                 <span class="icon fas fa-upload font-14 font-xs"></span>
                                 <a href="/upload-prescription" class="white-clr font-14">Upload Prescription</a>
                             </li>
+                            @if(Auth::guard('customer')->user())
+
+                            <li>
+                                <span class="icon far fa-user font-14 font-xs"></span>
+                                <a href="{{route('customer.profile')}}" class="white-clr font-14">{{Auth::guard('customer')->user()->name}}</a>
+                            </li>
+                            @else 
+
                             <li>
                                 <span class="icon far fa-user font-14 font-xs"></span>
                                 <a href="/customer-login" class="white-clr font-14">Login</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -82,14 +91,16 @@
                     <div class="col-md-9">
                         <div class="middle-header-menu-wrap">
                             <div class="header-search-area">
-                                <form class="header-product-search-form">
+                                <form action="{{url('/srcmedicine')}}" method="post"  class="header-product-search-form">
                                     <div class="header-product-search-content">
-                                        <div class="search-wrapper">
-                                            <input type="text" name="search" class="header-search-field" autocomplete="off" placeholder="Search here!">
-                                        </div>
-                                        <button type="button" class="header-search-submit-btn bg-color-alpa">
-                                            Search
-                                        </button>
+                                   
+                                            @csrf
+                                            <div class="search-wrapper">
+                                                <input type="text" name="search" class="header-search-field" autocomplete="off" placeholder="Search here!">
+                                            </div>
+                                            <button type="submit" class="header-search-submit-btn bg-color-alpa">
+                                                Search
+                                            </button>
                                     </div>
                                 </form>
                             </div>

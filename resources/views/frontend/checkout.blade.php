@@ -13,7 +13,7 @@
 								<table class="table table-bordered table-responsive">
 								    <thead  style="width: 100%;">
 								      <tr class="text-center">
-								        <th>Image</th>
+								        {{-- <th>Image</th> --}}
 								        <th>Product Name</th>
 								        <th>Price</th>
 								        <th>Qty</th>
@@ -21,30 +21,41 @@
 								      </tr>
 								    </thead>
 								    <tbody>
+										@php 
+                                          $all_data =  Cart::content();
+										  $total = 0;
+										@endphp
+										@foreach($all_data as $row)
+										@php 
+										  
+										  $total += $row->price * $row->qty;
+										@endphp
+
 								  		<tr>
-									        <td>
+									        {{-- <td>
 									        	<img class="img-fluid" width="50" src="" alt="product image">
+									        </td> --}}
+									        <td class="txt-cart">
+									        	{{$row->name}}
 									        </td>
 									        <td class="txt-cart">
-									        	Basin Pillar Cock
+									        	{{$row->price}}
 									        </td>
 									        <td class="txt-cart">
-									        	680
+									        	{{$row->qty}}
 									        </td>
 									        <td class="txt-cart">
-									        	1
-									        </td>
-									        <td class="txt-cart">
-									        	680
+									        	{{$row->price * $row->qty}}
 									        </td>
 								        </tr>
+										@endforeach
 								    </tbody>
 								</table>
 							    <table class="table table-bordered table-hover">
 						            <tfoot>
 						                <tr>
 					                        <td colspan="4" class="text-left">Total:</td>
-					                        <td class="text-right">৳ 680.00</td>
+					                        <td class="text-right">৳ {{$total}}</td>
 					                    </tr>
 						            </tfoot>
 					            </table>
@@ -57,13 +68,16 @@
 				<div class="section-left">
 	    			<div class="checkout-content checkout-payment-form">
 		            	<h2 class="secondary-title"><i class="fa fa-user"></i> Billing Address </h2>
+						<form action="/orderConfirm" method="post">
+							@csrf
 				        <div class="box-inner">
 				            <div id="payment-new" style="display: block">
 				                <div class="form-group required">
-				                    <input type="text" name="name" required="" placeholder="Name *" id="input-payment-firstname" class="form-control">
+				                    <input type="text" name="name" value="{{Auth::guard('customer')->user()->name}}" required="" placeholder="Name *" id="input-payment-firstname" class="form-control">
 				                </div>
 				                <div class="form-group required">
-				                    <input disabled="" placeholder="Email *" class="form-control">
+									{{-- <input type="hidden" name="user_id" value="{{Auth::guard('customer')->user()->id}}"> --}}
+				                    <input disabled="" name="email" value="{{Auth::guard('customer')->user()->email}}" placeholder="Email *" class="form-control">
 				                </div>
 				                <div class="form-group company-input">
 				                    <input type="text" name="phone" required="" placeholder="Phone *" id="input-payment-company" class="form-control">
@@ -75,16 +89,24 @@
 			                        <div class="checkout-content checkout-payment-methods">
 						                <h2 class="secondary-title"><i class="fa fa-credit-card"></i> Payment Method</h2>
 								        <div class="box-inner">
-								            <select class="form-control mt-2" id="delivary_id" name="delivary" required="" onchange="showDiv()">
+								            <select class="form-control mt-2" id="delivary_id" name="payment_type" required="" >
 					               	    		<option value="">--select--</option>
-					               	    		<option value="1">Cash On Delivery</option>
-					               	    		<option value="2">B-kash</option>
+					               	    		<option  value="1">Cash On Delivery</option>
+					               	    		<option onclick="hidedive()" value="2">B-kash</option>
 					               	    		<option value="3">Nagad</option>
 					               	    	</select>
-					               	    	<div id="hidden_div">
+											 
+					               	    	<div id="hidden_div" style="display: none">
 					               	    		<input type="text" name="t_phone" class="form-control mt-2" placeholder="Phone Number *">
 					               	    		<input type="text" name="trnx_id" class="form-control mt-2" placeholder="Trnx ID *">
 					               	    	</div>
+
+											   <script>
+												function hidedive(){
+												  document.getElementById("hidden_div").style.display === "block";
+
+												}
+											 </script>
 								        </div>
 							   		</div>
 			                    </div>
@@ -93,6 +115,7 @@
 								</div>
 				            </div>
 					    </div>
+					</form>
 					</div>
 				</div>
     	    </div>

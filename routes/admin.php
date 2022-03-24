@@ -49,43 +49,40 @@ use App\Http\Controllers\Backend\Api\ProductApiController;
 |
 */
 
-Route::get('/admin', function () {
-    return view('dashboard');
-})->name('dashboard')->middleware('web');
+// Route::get('/admin', function () {
+//     return view('dashboard');
+// })->name('dashboard')->middleware('web');
 
 //Administration related route
 Route::resource('/administrators', AdminController::class);
 
 Route::prefix('admin')->middleware('web')->group(function () {
 
-    Route::resources([
+    Route::get('/',function(){
+        return view('dashboard');
+    });
 
+    Route::resources([
         // Medicine related route
         'categories'    => CategoryController::class,
         'generics'      => GenericController::class,
         'manufactures'  => ManufactureController::class,
         'units'         => UnitController::class,
         'medicines'     => MedicineController::class,
-
         //Product related route
         'product-categories'        => ProductCategoryController::class,
         'product-sub-categories'    => ProductSubCategoryController::class,
         'product-sub-subcategories' => ProductSubSubCategoryController::class,
         'products'                  => ProductController::class,
-
         //Offer related route
         'offers'                    => ProductOfferController::class,
-
         //Banner
         'testimonials' => TestimonialController::class,     
         'promos' => PromoController::class,
-
         //City & Area
         'cities' => CityController::class,
         'areas'  => AreaController::class,
-             
     ]);
-
     // Status change related route
     Route::get('/categories/status/{id}', [CategoryController::class, 'changeStatus'])->name('categories.status');
     Route::get('/generics/status/{id}', [GenericController::class, 'changeStatus'])->name('generics.status');

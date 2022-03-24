@@ -78,6 +78,13 @@ class Medicine extends Model
             }])->with('medicinePrices.unit');
     }
 
+    public function scopeSearch($query, $q)
+    {
+        return $query->where('medicine_name', 'LIKE', "%{$q}%")
+            ->orWhere('details', 'LIKE', "%{$q}%");
+        
+    }
+
     protected static function boot()
     {
         parent::boot();

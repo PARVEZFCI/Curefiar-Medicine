@@ -61,10 +61,53 @@
     <hr>
     <div class="cart-footer">
      
+      @if(Auth::guard('customer')->user())
 
-        <a href="checkout.html">
+        <a href="/checkout">
             <button class="checkout-btn bg-color-alpa w-100 font-18 br-3 white-clr">Continue to Checkout</button>
         </a>
+        @else 
+
+        <a href="/customer-login">
+          <button class="checkout-btn bg-color-alpa w-100 font-18 br-3 white-clr">Continue to Checkout</button>
+      </a>
+
+      @endif
     </div>
 </div>
+
+<script>
+      $(".count").each(function () {
+    var count = $(this),
+      input = count.find('input[type="number"]'),
+      increament = count.find(".increment"),
+      decreament = count.find(".decrement"),
+      minValue = input.attr("min"),
+      maxValue = input.attr("max");
+    increament.on("click", function () {
+      var oldValue = parseFloat(input.val());
+
+      if (oldValue >= maxValue) {
+        var newVal = oldValue;
+      } else {
+        var newVal = oldValue + 1;
+      }
+
+      count.find("input").val(newVal);
+      count.find("input").trigger("change");
+    });
+    decreament.on("click", function () {
+      var oldValue = parseFloat(input.val());
+
+      if (oldValue <= minValue) {
+        var newVal = oldValue;
+      } else {
+        var newVal = oldValue - 1;
+      }
+
+      count.find("input").val(newVal);
+      count.find("input").trigger("change");
+    });
+  });
+</script>
 

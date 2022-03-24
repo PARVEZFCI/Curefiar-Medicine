@@ -6,7 +6,8 @@
 		<div class="row">
 			<div class="col-md-5 m-auto">
 				<h5 class="font-w-700 mb-4 text-center">Registration With User Credentials</h5>
-				<form action="#" method="" class="register-form box-shadow-1 br-5 p-4">
+				<form action="{{route('store.customer')}}" method="post" class="register-form box-shadow-1 br-5 p-4">
+					@csrf
 					<div class="row p-4">
 						<div class="col-md-12 col-xs-12">
 							<div class="form-group">
@@ -25,7 +26,7 @@
 						</div>
 						<div class="col-sm-12 col-xs-12 mt-3">
 							<div class="form-group mb-0">
-								<button class="btn bg-color-alpa custom-btn br-3 w-100">Registration</button>
+								<button type="submit" class="btn bg-color-alpa custom-btn br-3 w-100">Registration</button>
 							</div>
 						</div>
 

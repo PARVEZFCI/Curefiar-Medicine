@@ -12,7 +12,7 @@
 									<div class="single-product-left-side">
 										<div class="single-product-image text-center">
 											<img style="height: 200px;
-											width: 259px;" src="{{ $medicinesingle->image ? '/storage/uploads/medicines/' . $medicinesingle->image : '/image.svg'}}" alt="item">
+											width: 259px;" src="{{ $medicinesingle->image ? '/storage/uploads/medicines/' . $medicinesingle->image : '/frontend/assets/img/product/p3.jpg'}}" alt="item">
 										</div>
 									</div>
 								</div>
@@ -78,10 +78,10 @@
                 <div class="item">
                     <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
                         <a href="{{route('medicine.single',$medicine->slug)}}" class="img-box block relative">
-                            <img src="frontend/assets/img/product/p7.jpg">
+                            <img src="{{ $medicine->image ? '/storage/uploads/medicines/' . $medicine->image : '/frontend/assets/img/product/p3.jpg'}}">
                         </a>
                         <div class="product-desc-block">
-                            <a href="javascript:void(0)">{{$medicine->medicine_name}}</a>
+                            <a href="{{route('medicine.single',$medicine->slug)}}">{{$medicine->medicine_name}}</a>
                             <p class="price-box">
 								@if($medicine->medicinePrices[0]->discount_price)
                                 <span class="price-new">৳ {{$medicine->medicinePrices[0]->discount_price}}</span>

@@ -6,7 +6,8 @@
 		<div class="row">
 			<div class="col-md-5 m-auto">
 				<h5 class="font-w-700 mb-4 text-center">Login With User Credentials</h5>
-				<form action="#" method="" class="register-form box-shadow-1 br-5 p-4">
+				<form action="{{route('login.customer')}}" method="post" class="register-form box-shadow-1 br-5 p-4">
+					@csrf
 					<div class="row p-4">
 						<div class="col-md-12 col-xs-12">
 							<div class="form-group">

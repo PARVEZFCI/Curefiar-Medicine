@@ -56,4 +56,18 @@ class FrontendCategoryController extends Controller
       }
 
     }
+
+    public function srcmedicine(Request $request){
+      try{
+
+      $data['medicines'] =  Medicine::Search($request->search)->relation()->get();
+       return view('frontend.searchmedicine',$data);
+      }catch(\Exception $e){
+        
+        abort(404);
+
+
+      }
+
+    }
 }
