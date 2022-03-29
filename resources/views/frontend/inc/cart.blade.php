@@ -25,9 +25,9 @@
                             <i class="fa fa-minus"></i>
                         </button>
                         <div class="cart-setion-quantity-input">
-                            <input type="text" name="" step="1" min="1" max="33" value="{{$row->qty}}" autocomplete="off" height="100%">
+                            <input onchange="updateqty('{{$row->rowId}}',{{$row->id}})" type="text" id="quantity_{{$row->id}}" name="" step="1" min="1" max="33" value="{{$row->qty}}" autocomplete="off" height="100%">
                         </div>
-                        <button type="button" class="quantity-inc-dec-btn">
+                        <button onclick="keyUp({{$row->id}})" type="button" class="quantity-inc-dec-btn">
                             <i class="fa fa-plus next-icon"></i>
                         </button>
                     </div>
@@ -77,37 +77,34 @@
 </div>
 
 <script>
-      $(".count").each(function () {
-    var count = $(this),
-      input = count.find('input[type="number"]'),
-      increament = count.find(".increment"),
-      decreament = count.find(".decrement"),
-      minValue = input.attr("min"),
-      maxValue = input.attr("max");
-    increament.on("click", function () {
-      var oldValue = parseFloat(input.val());
 
-      if (oldValue >= maxValue) {
-        var newVal = oldValue;
-      } else {
-        var newVal = oldValue + 1;
-      }
+  function keyUp(id){
+ 
+    var qty =  parseFloat($("#quantity_"+id).val());
+    qty = qty + 1;
 
-      count.find("input").val(newVal);
-      count.find("input").trigger("change");
-    });
-    decreament.on("click", function () {
-      var oldValue = parseFloat(input.val());
+  //  document.getElementById().value = qty;
+    $("#quantity_" + id).val(qty);
+      $("#quantity_" + id).trigger("change");
 
-      if (oldValue <= minValue) {
-        var newVal = oldValue;
-      } else {
-        var newVal = oldValue - 1;
-      }
+  }
 
-      count.find("input").val(newVal);
-      count.find("input").trigger("change");
-    });
-  });
+function updateqty(rowId,id){
+    var qty =  parseFloat($("#quantity_"+id).val());
+$.ajax({
+    url:'/cart/product/update',
+    data:{
+       rowId:rowId,
+       qty:qty
+    },
+    
+    type:"GET",
+
+    success:function(data){
+       $('#cart-data').html(data);
+    }
+})
+  }
+     
 </script>
 

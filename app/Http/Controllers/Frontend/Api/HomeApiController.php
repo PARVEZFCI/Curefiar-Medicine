@@ -8,6 +8,7 @@ use App\Models\MediaSetting;
 use App\Models\ProductCategory; 
 use App\Models\Product;
 use App\Models\Medicine;
+use App\Models\ProductOffer;
 
 
 class HomeApiController extends Controller
@@ -19,7 +20,10 @@ class HomeApiController extends Controller
     //     $q->limit(2)->get();
     // }])
     // ->limit(3)->get();
+    $data['offers'] = ProductOffer::latest()->limit(3)->get();
+   // dd($data['offers']);
     $data['categories'] = ProductCategory::with('products') ->get() ->map(function ($query) { $query->setRelation('products', $query->products->sortBy('id')->take(5)); return $query; });
     return view('frontend.index',$data);
+   
    }
 }

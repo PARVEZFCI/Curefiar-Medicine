@@ -56,22 +56,22 @@ class ProductOfferController extends Controller
         $productoffer->fill($data)->save();
     
 
-        foreach($request->id as $key=> $row){
-            $product_id[] = $row;
-            Product::updateOrCreate(
-                ['id' => $row],
-                [
-                    'price'=>$request->price[$key],
-                    'discount' => $request->discount[$key],
-                    'discount_price' => $request->discount_price[$key] 
-                ]
-            );
+        // foreach($request->id as $key=> $row){
+        //     $product_id[] = $row;
+        //     Product::updateOrCreate(
+        //         ['id' => $row],
+        //         [
+        //             'price'=>$request->price[$key],
+        //             'discount' => $request->discount[$key],
+        //             'discount_price' => $request->discount_price[$key] 
+        //         ]
+        //     );
 
-            OfferProducts::create([
-                'product_id' =>$row,
-                'offer_id'   =>$productoffer->id
-            ]);
-        }
+        //     OfferProducts::create([
+        //         'product_id' =>$row,
+        //         'offer_id'   =>$productoffer->id
+        //     ]);
+        // }
 
     notify()->success("Product Offer Save successfully", "");
         return redirect()->route('offers.index');
@@ -121,9 +121,9 @@ class ProductOfferController extends Controller
     {
        $productOffer = ProductOffer::findOrFail($id);
    
-        if($productOffer->image){
-            unlink('storage/uploads/offer/'.$productOffer->image);
-        }
+        // if($productOffer->image){
+        //     unlink('storage/uploads/offer/'.$productOffer->image);
+        // }
         $productOffer->delete();
         notify()->success("Product Offer Delete successfully", "");
         return redirect()->route('offers.index');

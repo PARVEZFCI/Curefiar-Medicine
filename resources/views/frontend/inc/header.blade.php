@@ -1,21 +1,4 @@
 <div class="fixed-social-area">
-    <!--<ul class="fixed-social-list">-->
-    <!--    <li>-->
-    <!--        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>-->
-    <!--    </li>-->
-    <!--    <li>-->
-    <!--        <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>-->
-    <!--    </li>-->
-    <!--    <li>-->
-    <!--        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>-->
-    <!--    </li>-->
-    <!--    <li>-->
-    <!--        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>-->
-    <!--    </li>-->
-    <!--    <li>-->
-    <!--        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>-->
-    <!--    </li>-->
-    <!--</ul>-->
 </div>
 
 <div class="page-wrapper">
@@ -35,8 +18,10 @@
                                 <a href="/track-order" class="white-clr font-14">Track Order</a>
                             </li>
                             <li class="mr-lg-4">
-                                <span class="icon fas fa-upload font-14 font-xs"></span>
-                                <a href="/upload-prescription" class="white-clr font-14">Upload Prescription</a>
+                                <a href="javascript:void(0)" class="cart-bag">
+                                    <i class="flaticon-shopping-bag"></i>
+                                     <span class="mini-item-counter">{{ Cart::count(); }}</span>
+                                   </a>
                             </li>
                             @if(Auth::guard('customer')->user())
 
@@ -69,7 +54,7 @@
                         <div class="middle-header-left">
                             <div class="header-logo">
                             <a href="/">
-                                    <img src="/frontend/assets/img/logo_1.png" alt="logo">
+                                    <img style="width: 135px;" src="/frontend/assets/img/logo_1.png" alt="logo">
                                 </a>
                             </div>
                             <div class="f-mbl-view-login f-mbl-view">
@@ -109,10 +94,11 @@
                                    
                                 </li>
                                 <li class="middle-header-menu-item">
-                                    <a href="javascript:void(0)" class="cart-bag">
-                                     <i class="flaticon-shopping-bag"></i>
-                                      <span class="mini-item-counter">{{ Cart::count(); }}</span>
-                                    </a>
+                                    <span class="icon fas fa-upload font-14 font-xs"></span>
+
+                                    <a href="/upload-prescription" class="text-green font-14">Upload Prescription</a>
+
+                                  
                                 </li>
                             </ul>
                         </div>

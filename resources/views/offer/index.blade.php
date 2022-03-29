@@ -104,7 +104,7 @@
                     <div class="avatar-image banner-image">
                         <img src="/image.svg" alt="avatar-image">
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="form-label">Product</label>
                         <div class="g w-100">
                             <div class="form-control-wrap">
@@ -116,10 +116,10 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- selected product area show -->
-                    <div class="table-responsive">
+                    {{-- <div class="table-responsive">
                     	<table class="table table-bordered">
 			                <thead>
 			                    <tr>
@@ -139,7 +139,7 @@
                     
 			            </table>
 
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <button  type="submit" class="btn theme-btn">Save</button>
                     </div>

@@ -50,4 +50,12 @@ class ProfileController extends Controller
         return view('frontend.auth.order',$data);
         
     }
+
+    public function logout(){
+        Auth::guard('customer')->logout();
+
+        notify()->success("Logout successfully", "");
+        return redirect('/');
+
+    }
 }

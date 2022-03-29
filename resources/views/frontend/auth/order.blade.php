@@ -34,7 +34,7 @@
 	        						    </a>
 	        					    </li>
 	        					    <li>
-	        							<a href="javascript:void(0)">
+	        							<a href="/customer-logout">
 	        						       <i class="fa fa-lock"></i> Log Out	
 	        						    </a>
 	        					    </li>
