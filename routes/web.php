@@ -28,11 +28,14 @@ Route::get('/', [HomeApiController::class, 'index']);
 Route::get('/en/pr/{catslug}',[FrontendCategoryController::class,'categorywiseproduct'])->name('category.product');
 Route::get('/en/md/all',[FrontendCategoryController::class,'allmedicine'])->name('medicine.all'); 
 Route::get('/products/{slug}',[FrontendCategoryController::class,'singleproduct'])->name('product.single');
-Route::get('/medicine/{slug}',[FrontendCategoryController::class,'singleproduct'])->name('medicine.single');  
+Route::get('/medicine/{slug}',[FrontendCategoryController::class,'singleproduct'])->name('medicine.single');    
+Route::get('/medicinecat/{slug}',[FrontendCategoryController::class,'medicinecat'])->name('medicine.medicinecat');
 Route::post('/srcmedicine',[FrontendCategoryController::class,'srcmedicine'])->name('medicine.srcmedicine');
 
 Route::get('/cart/product',[CartController::class,'addtocart'])->name('product.cart');  
 Route::get('/cart/product/delete',[CartController::class,'removeCart'])->name('product.cart.delete');
+Route::get('/cart/product/update',[CartController::class,'updatecart'])->name('product.cart.update');
+
 
 //registration
 Route::post('/store/customer',[LoginController::class,'CustomerRegistration'])->name('store.customer');
@@ -52,6 +55,8 @@ Route::group(['middleware'=>'customer' ],function(){
     Route::post('/checkout',[OrderController::class,'checkout'])->name('order.checkout');
     Route::post('/orderConfirm',[OrderController::class,'orderConfirm'])->name('order.confirm');
     Route::get('/customer-order',[ProfileController::class,'GetCustomerOrder'])->name('order.customer');
+    Route::get('/customer-logout',[ProfileController::class,'logout'])->name('customer.logout');
+
 });
 
 

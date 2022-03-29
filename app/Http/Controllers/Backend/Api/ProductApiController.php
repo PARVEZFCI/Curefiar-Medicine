@@ -25,10 +25,10 @@ class ProductApiController extends Controller
 
         $product_image = ProductImage::findOrFail($id);
         
-        if($product_image->image){
+      //   if($product_image->image){
 
-           unlink('storage/uploads/product/mainproduct/'.$product_image->image);
-        }
+      //      unlink('storage/uploads/product/mainproduct/'.$product_image->image);
+      //   }
         $product_image->delete();
         return back();
 

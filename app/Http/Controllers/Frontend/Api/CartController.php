@@ -159,5 +159,67 @@ class CartController extends Controller
         return $html;
 
     }
+
+    public function updatecart(Request $request){
+
+        Cart::update($request->rowId, $request->qty);
+
+        $cartdata = Cart::content();
+        $html = '';
+        foreach($cartdata as $key=>$row){
+            $id = "$key";
+            $html.= '
+            <div class="cart-section">
+            <div class="cart-order-item d-flex align-items-center justify-content-between flex-sm-wrap">
+                <div class="item-image">
+                    <a href="javascript:void(0)" class="font-14 clr-4f4f4f">
+                       '.$row->name.'
+                    </a>
+                </div>
+                <div class="item-price">
+                    <p class="font-14 mb-1">Price: '.$row->price.' X '. $row->qty . ' </p>
+                    <p class="font-14 mb-1">SubTotal: '.$row->price*$row->qty.'/-</p>
+                </div>
+                <div class="cart-setion-quantity-box">
+                    <button type="button" class="quantity-inc-dec-btn">
+                        <i class="fa fa-minus"></i>
+                    </button>
+
+                    <div class="cart-setion-quantity-input">
+
+                        <input onchange="updateqty('."'$id'".','.$row->id.')" type="text" id="quantity_'.$row->id.'" name="" step="1" min="1" max="33" value="'.$row->qty.'" autocomplete="off" height="100%">
+
+                    </div>
+                    <button onclick="keyUp('.$row->id.')" type="button" class="quantity-inc-dec-btn">
+                            <i class="fa fa-plus next-icon"></i>
+                        </button>
+                </div>
+                <div class="action">
+                    <button type="button" onclick="deleteCart('."'$id'".')">
+                        <i class="fas fa-trash text-danger"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+';
+        }
+        $html.='
+        <div class="cart-order-item d-flex align-items-center justify-content-between flex-sm-wrap">
+        <div class="item-image">
+            Total
+        </div>
+        <div class="item-price">
+            <p class="font-14 mb-1">'.Cart::total().'/-</p>
+        </div>
+        <div class="">
+        </div>
+        <div class="action">
+        </div>
+    </div>';
+        return $html;
+
+
+    }
     
 }

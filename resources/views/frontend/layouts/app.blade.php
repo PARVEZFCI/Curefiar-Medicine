@@ -17,6 +17,8 @@
 	    <link rel="stylesheet" type="text/css" href="/frontend/assets/fontawesome/css/all.min.css">
 	    <link rel="stylesheet" type="text/css" href="/frontend/assets/fontawesome/css/fontawesome.min.css">
 	    <link rel="stylesheet" type="text/css" href="/frontend/assets/css/flaticon.css">
+		<link rel="stylesheet" type="text/css" href="/frontend/css/allmedicine.css">
+
 	    
 	    <!-- Main Css -->
 	    <link rel="stylesheet" type="text/css" href="/frontend/assets/css/theme.css">

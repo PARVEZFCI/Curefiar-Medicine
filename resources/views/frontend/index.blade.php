@@ -29,12 +29,14 @@
 <section class="home-promo-section">
     <div class="container">
         <div class="row">
+            @foreach($offers as $offer)
             <div class="col-md-4">
                 <div class="home-promo-wrap">
-                    <img src="frontend/assets/img/promo/p1.jpg" alt="promo-img" class="img-fluid">
+                    <img src="{{$offer->image ? '/storage/uploads/offer/'.$offer->image : '/image.svg' }}" alt="promo-img" class="img-fluid">
                 </div>
             </div>
-            <div class="col-md-4">
+            @endforeach
+            {{-- <div class="col-md-4">
                 <div class="home-promo-wrap">
                     <img src="frontend/assets/img/promo/p2.jpg" alt="promo-img" class="img-fluid">
                 </div>
@@ -43,7 +45,7 @@
                 <div class="home-promo-wrap">
                     <img src="frontend/assets/img/promo/p3.jpg" alt="promo-img" class="img-fluid">
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -62,7 +64,7 @@
         </div>
         <div class="row">
             @foreach($medicines as $medicine)
-            <div class="col-6 col-md-3 col-md-3half">
+            <div class="col-6 col-md-2 col-md-3half">
                 <div class="item">
                     <div class="product-item-container h-full w-full ct-item-box box-shadow-1">
                         <a href="{{route('medicine.single',$medicine->slug)}}" class="img-box block relative">

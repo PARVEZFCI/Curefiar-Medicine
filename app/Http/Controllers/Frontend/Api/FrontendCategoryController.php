@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductCategory; 
 use App\Models\Product;
 use App\Models\Medicine;
+use App\Models\Category;
 
 class FrontendCategoryController extends Controller
 {
@@ -18,6 +19,8 @@ class FrontendCategoryController extends Controller
       //       $q->paginate(2);
       //   }])
       //   ->first();
+      $data['pro_categories'] = ProductCategory::latest()->get();
+       
         $data['products'] = Product::where('category_id',$categories->id)->orderBy('id','DESC')->paginate(20);
         return view('frontend.categorywiseproduct',$data);
     }
@@ -26,13 +29,13 @@ class FrontendCategoryController extends Controller
          
       $data['medicines'] = Medicine::active()->relation()->paginate(50);
         // dd( $data['medicines']);
+        $data['medicine_categories'] = Category::latest()->get();
       return view('frontend.allmedicine',$data);
     }
 
     public function singleproduct($slug){
   
       try{
-
 
       $data['productsingle'] = $product = Product::where('slug',$slug)->first();
       $data['medicinesingle'] =  Medicine::where('slug',$slug)->relation()->first();
@@ -43,8 +46,6 @@ class FrontendCategoryController extends Controller
       }else{
 
         $data['medicines'] = Medicine::inRandomOrder()->active()->relation()->limit(6)->get();
-
-
         return view('frontend.singlemedicine',$data); 
 
 
@@ -69,5 +70,17 @@ class FrontendCategoryController extends Controller
 
       }
 
+    }
+
+    public function medicinecat($slug){
+     
+      $cat_id = Category::where('slug',$slug)->first();
+     
+      $data['medicines'] = Medicine::where('category_id',$cat_id->id)->active()->relation()->paginate(30);
+
+      $data['medicine_categories'] = Category::latest()->get();
+
+      return view('frontend.allmedicine',$data);
+ 
     }
 }

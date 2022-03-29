@@ -22,7 +22,6 @@ class ProductController extends Controller
     public function index()
     {
         $data['products'] = Product::with(['productCategories','productSubCategories','productSubSubCategories'])->orderBy('id','DESC')->get();
-      
         return view('product.index',$data);
     }
 
@@ -65,13 +64,10 @@ class ProductController extends Controller
         
         if($request->hasFile('photos')){
             foreach ($request->photos as $key => $photo) {
-               
-                
+        
                 $extension = $photo->getClientOriginalExtension();
                 $name      = "photo".'_'.time().rand(). '.' .$extension;
                     $photo->storeAs('public/uploads/product/mainproduct', $name);
-               
-              
                
                 ProductImage::create([
                     'product_id'=>$product->id,
@@ -85,8 +81,6 @@ class ProductController extends Controller
         
         notify()->success("Product Save successfully", "");
         return redirect()->route('products.index');
-
-
     }
 
     /**
@@ -131,7 +125,6 @@ class ProductController extends Controller
             // if($product->thumbnail_image){
             //     unlink('storage/uploads/product/'.$product->thumbnail_image);
             // }
-
             $extension = $request->thumbnail->getClientOriginalExtension();
             $imageName = "product".'_'.time().'.'.$extension;
             $request->thumbnail->storeAs('public/uploads/product',$imageName);
@@ -168,14 +161,14 @@ class ProductController extends Controller
     {
         if($product->image){
             $image = json_decode($product->image);
-            foreach($image as $row){
-                unlink('storage/uploads/product/mainproduct/'.$row);
-            }
+            // foreach($image as $row){
+            //     unlink('storage/uploads/product/mainproduct/'.$row);
+            // }
 
         }
-        if($product->thumbnail_image){
-            unlink('storage/uploads/product/'.$product->thumbnail_image);
-        }
+        // if($product->thumbnail_image){
+        //     unlink('storage/uploads/product/'.$product->thumbnail_image);
+        // }
       $product->delete();
     
         notify()->success("Product deleted successfully", "");
@@ -186,11 +179,11 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         if($product->status == 0) {
-
             $product->status = 1;
         } else {
             $product->status = 0;
         }
+        
         $product->save();
 
         notify()->success("Product status changed successfully", "");

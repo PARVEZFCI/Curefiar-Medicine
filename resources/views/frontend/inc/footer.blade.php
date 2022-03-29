@@ -91,7 +91,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-left">
-                    <p>Copyright © 2022 <b>CUREHUB</b></p>
+                    <p>Copyright © 2022 <b>curefair</b></p>
                 </div>
                 <div class="col-md-6 text-right">
                     <p>Designed and Developed By <a  class="text-white" target="_blank" href="https://bizitbd.com/">
