@@ -46,13 +46,13 @@ class FrontendCategoryController extends Controller
       }else{
 
         $data['medicines'] = Medicine::inRandomOrder()->active()->relation()->limit(6)->get();
+        //dd($data['medicinesingle']);
         return view('frontend.singlemedicine',$data); 
-
-
       }
 
 
       }catch(\Exception $e){
+        
         abort(404);
       }
 
@@ -66,8 +66,6 @@ class FrontendCategoryController extends Controller
       }catch(\Exception $e){
         
         abort(404);
-
-
       }
 
     }

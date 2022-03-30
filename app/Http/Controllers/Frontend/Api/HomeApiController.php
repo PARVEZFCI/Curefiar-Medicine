@@ -16,6 +16,7 @@ class HomeApiController extends Controller
    public function index(){
     
     $data['medicines'] =Medicine::orderBy('id','DESC')->active()->relation()->take(10)->get();
+   
     // $data['categories'] = ProductCategory::with(['products' => function($q) {
     //     $q->limit(2)->get();
     // }])

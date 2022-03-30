@@ -21,7 +21,7 @@
                         <p class="font-14 mb-1">SubTotal: {{$row->price*$row->qty }}/-</p>
                     </div>
                     <div class="cart-setion-quantity-box">
-                        <button type="button" class="quantity-inc-dec-btn">
+                        <button type="button" onclick="keyDown({{$row->id}})" class="quantity-inc-dec-btn">
                             <i class="fa fa-minus"></i>
                         </button>
                         <div class="cart-setion-quantity-input">
@@ -77,6 +77,15 @@
 </div>
 
 <script>
+
+    function keyDown(id){
+    var qty =  parseFloat($("#quantity_"+id).val());
+    qty = qty - 1;
+    if(qty > 0){
+    $("#quantity_" + id).val(qty);
+    $("#quantity_" + id).trigger("change");
+    }
+    }
 
   function keyUp(id){
  

@@ -3,7 +3,12 @@
 
 <div class="page-wrapper">
     <!-- Header -->
-    <header class="main-header">
+    <header class="main-header fixed-top" style="width: 100%;
+    z-index: 999;
+    position: sticky;
+    top: -1
+px
+;">
         <!-- Header Top -->
         <div class="top-header">
             <div class="container">
@@ -18,7 +23,8 @@
                                 <a href="/track-order" class="white-clr font-14">Track Order</a>
                             </li>
                             <li class="mr-lg-4">
-                                <a href="javascript:void(0)" class="cart-bag">
+                                <a href="javascript:void(0)" style="font-size: 19px;
+                                color: #fff;" class="cart-bag">
                                     <i class="flaticon-shopping-bag"></i>
                                      <span class="mini-item-counter">{{ Cart::count(); }}</span>
                                    </a>
@@ -27,7 +33,7 @@
 
                             <li>
                                 <span class="icon far fa-user font-14 font-xs"></span>
-                                <a href="{{route('customer.profile')}}" class="white-clr font-14">{{Auth::guard('customer')->user()->name}}</a>
+                                <a href="{{route('customer.profile')}}" class="white-clr font-14 pw-600" style="font-size: 16px;">{{Auth::guard('customer')->user()->name}}</a>
                             </li>
                             @else 
 
@@ -47,7 +53,7 @@
         @endphp 
         
         <!-- Header Center -->
-        <div class="header-middle">
+        <div class="header-middle" style=" background: #ffff;">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-3">
@@ -109,7 +115,7 @@
         <!-- End Header Center -->
 
         <!-- Header Bottom -->
-        <div class="header-bottom">
+        <div class="header-bottom ">
             <div class="container">   
               <ul class="header-bottom-menu"> 
                     <li class="header-menu-item">

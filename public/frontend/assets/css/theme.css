@@ -292,7 +292,7 @@ a, .btn {
 a:focus, a:hover {
     text-decoration: none;
     outline: none;
-    color: #c53321!important;
+    color: rgb(236, 108, 108)!important;
 }
 
 .btn.focus, .btn:focus, .btn:hover, 

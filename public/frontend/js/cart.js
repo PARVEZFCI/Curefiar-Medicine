@@ -31,3 +31,4 @@ function forAddToCart(id,type){
 
 	 
  }
+

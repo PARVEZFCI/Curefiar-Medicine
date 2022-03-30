@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Cart;
 use Auth;
+use Mail;
 
 class OrderController extends Controller
 {
@@ -17,21 +18,7 @@ class OrderController extends Controller
         return view('frontend.checkout');
     }
     public function orderConfirm(Request $request){
-
-      
-     
         try {
-            // $validator = Validator::make($request->shipping_address, [
-            //     'name' => 'required',
-            //     'phone' => 'required',
-            //     'city' => 'required',
-            //     'area' => 'required',
-            //     'address' => 'required',
-            // ]);
-
-            // if($validator->fails()){
-            //     return response()->json($validator->errors(), 400);
-            // }
             
             DB::transaction(function () use($request) {
                 $order = Order::latest()->first();
@@ -90,7 +77,14 @@ class OrderController extends Controller
                 } 
 
 
+                Mail::send('frontend.emails.reset_email', compact('data'), function($message) use($cusAddress) {
+                    $message->from('gamersnab247@gmail.com');
+                    $message->to($data['email'])->subject('Change your password');
+                });
+
+
                 Cart::destroy();
+
                 
                
             }); 
