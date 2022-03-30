@@ -22,15 +22,21 @@
 											<div class="single-product-name">
 												<h2 class="txt-clr-1 mb-3">{{$medicinesingle->medicine_name}}</h2>
 											</div>
+										      
+                                            @foreach($medicinesingle->medicinePrices as $row)
+											<input type="radio" name="unit"> 1 {{$row->unit->unit_name}} = 	@if($row->discount_price)
+											<span class="price-new">৳ {{$row->discount_price}}</span>
+											<span class="price-old">৳ {{$row->price}}</span>
+											@else 
+											<span class="price-new">৳
+												 {{$row->price}}        
+											</span>
+											@endif<br>
+											@endforeach
+											{{-- <input type="radio" name="unit" value=""> 1 Pata --}}
+										    
 											<p class="price-box">
-												@if($medicinesingle->medicinePrices[0]->discount_price)
-												<span class="price-new">৳ {{$medicinesingle->medicinePrices[0]->discount_price}}</span>
-												<span class="price-old">৳ {{$medicinesingle->medicinePrices[0]->price}}</span>
-												@else 
-												<span class="price-new">৳
-													 {{$medicinesingle->medicinePrices[0]->price}}        
-												</span>
-												@endif
+											
 										  	</p>
 											<p class="single-product-details">
 										    {!! $medicinesingle->details !!}	

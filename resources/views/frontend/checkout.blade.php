@@ -89,10 +89,10 @@
 			                        <div class="checkout-content checkout-payment-methods">
 						                <h2 class="secondary-title"><i class="fa fa-credit-card"></i> Payment Method</h2>
 								        <div class="box-inner">
-								            <select class="form-control mt-2" id="delivary_id" name="payment_type" required="" >
+								            <select class="form-control mt-2" id="payment_type" name="payment_type" required="" >
 					               	    		<option value="">--select--</option>
 					               	    		<option  value="1">Cash On Delivery</option>
-					               	    		<option onclick="hidedive()" value="2">B-kash</option>
+					               	    		<option value="2">B-kash</option>
 					               	    		<option value="3">Nagad</option>
 					               	    	</select>
 											 
@@ -101,12 +101,6 @@
 					               	    		<input type="text" name="trnx_id" class="form-control mt-2" placeholder="Trnx ID *">
 					               	    	</div>
 
-											   <script>
-												function hidedive(){
-												  document.getElementById("hidden_div").style.display === "block";
-
-												}
-											 </script>
 								        </div>
 							   		</div>
 			                    </div>
@@ -123,4 +117,26 @@
 	</div>
 </section>
 <!-- End Contact Section-->
+<script src="/frontend/assets/js/jquery.min.js"></script>
+
+
+<script>	
+ $(document).ready(function() {
+   $('select[name="payment_type"]').on('change', function(){
+       var product_code = $(this).val();
+       console.log(product_code);
+
+	   if(product_code==2 || product_code==3){
+
+		   $("#hidden_div").show();
+	   }else{
+		   $("#hidden_div").hide();
+	   }
+
+   });
+});
+
+</script>
 @endsection
+
+
